@@ -6,7 +6,9 @@ function updatedWeather(response) {
   let wind = document.querySelector("#speed");
   let time = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
-  //console.log(response.data);
+  let icon = document.querySelector("#icon");
+
+  icon.innerHTML = `<img src="${response.data.condition.icon_url}" alt="weather icon" class="weather-icon"></img>`;
 
   time.innerHTML = formatDate(date);
   wind.innerHTML = `${response.data.wind.speed}km/h`;
