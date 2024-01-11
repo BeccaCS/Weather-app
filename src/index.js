@@ -1,5 +1,8 @@
-/*function currentDate(date) {
-  let weekdays = [
+function fromatDate(date) {
+  let day = day.getDay();
+  let minutes = day.getMinutes();
+  let hours = day.getHours();
+  let days = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -8,22 +11,22 @@
     "Friday",
     "Saturday",
   ];
-
-  let day = get(currentDate);
-  document.querySelector("#weather-details");
-  let currentDay = day[weekdays]
-  currentDay.innerHTML
+  return date;
 }
-*/
 
 function updatedWeather(response) {
   let temperature = document.querySelector("#display-degrees");
   let cityElement = document.querySelector("#city");
   let description = document.querySelector("#description");
-  console.log(response.data);
   let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("#speed");
+  let time = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+  //console.log(response.data);
 
-  humidity.innerHTML = response.data.temperature.humidity;
+  time.innerHTML = `${date.getDay()},${date.getHours()}:${date.getMinutes()}`;
+  wind.innerHTML = `${response.data.wind.speed}km/h`;
+  humidity.innerHTML = `${response.data.temperature.humidity}%`;
   description.innerHTML = response.data.condition.description;
   temperature.innerHTML = Math.round(response.data.temperature.current);
   cityElement.innerHTML = response.data.city;
