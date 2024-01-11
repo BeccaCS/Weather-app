@@ -1,8 +1,31 @@
+/*function currentDate(date) {
+  let weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = get(currentDate);
+  document.querySelector("#weather-details");
+  let currentDay = day[weekdays]
+  currentDay.innerHTML
+}
+*/
+
 function updatedWeather(response) {
   let temperature = document.querySelector("#display-degrees");
   let cityElement = document.querySelector("#city");
-  temperature.innerHTML = Math.round(response.data.temperature.current);
+  let description = document.querySelector("#description");
+  console.log(response.data);
+  let humidity = document.querySelector("#humidity");
 
+  humidity.innerHTML = response.data.temperature.humidity;
+  description.innerHTML = response.data.condition.description;
+  temperature.innerHTML = Math.round(response.data.temperature.current);
   cityElement.innerHTML = response.data.city;
 }
 
@@ -22,16 +45,4 @@ function formSearch(event) {
 let searchform = document.querySelector("#search-form-input");
 searchform.addEventListener("submit", formSearch);
 
-/*
-function currentDate(date) {
-  let weekdays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-}
-*/
+search("Madrid");
