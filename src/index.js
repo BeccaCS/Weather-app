@@ -1,19 +1,3 @@
-function fromatDate(date) {
-  let day = day.getDay();
-  let minutes = day.getMinutes();
-  let hours = day.getHours();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  return date;
-}
-
 function updatedWeather(response) {
   let temperature = document.querySelector("#display-degrees");
   let cityElement = document.querySelector("#city");
@@ -24,12 +8,32 @@ function updatedWeather(response) {
   let date = new Date(response.data.time * 1000);
   //console.log(response.data);
 
-  time.innerHTML = `${date.getDay()},${date.getHours()}:${date.getMinutes()}`;
+  time.innerHTML = formatDate(date);
   wind.innerHTML = `${response.data.wind.speed}km/h`;
   humidity.innerHTML = `${response.data.temperature.humidity}%`;
   description.innerHTML = response.data.condition.description;
   temperature.innerHTML = Math.round(response.data.temperature.current);
   cityElement.innerHTML = response.data.city;
+}
+
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day} ${hours}:${minutes}`;
 }
 
 function search(city) {
