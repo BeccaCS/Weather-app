@@ -8,7 +8,6 @@ footer {
 }
 a {
   color: #113f67;
-  
 }
 
 p {
@@ -65,4 +64,18 @@ main {
 
 #icon {
   padding-top: 0px;
+}
+
+.forecast {
+  table-layout: auto;
+  width: 100%;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  color: #38598b;
+}
+
+.weather-forecast-temperature {
+  font-size: 12px;
 }
